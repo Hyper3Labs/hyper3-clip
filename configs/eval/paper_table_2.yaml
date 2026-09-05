@@ -1,0 +1,31 @@
+# Paper Table 2: cross-modal retrieval and the ImageNet WordNet hierarchy.
+# Reported columns: i2t_r1/r5/r10 ("text retrieval"), t2i_r1/r5/r10
+# ("image retrieval"), then tie / lca / jaccard / hierarchical_precision /
+# hierarchical_recall.
+name: paper_table_2
+defaults:
+  batch_size: 128
+  num_workers: 8
+  precision: fp32
+tasks:
+  - id: coco_karpathy_retrieval
+    name: coco_karpathy_retrieval
+    data:
+      dataset: COCO Karpathy
+      coco2014_root: ${HYPER3_COCO2014_ROOT}
+      coco_karpathy_split: test
+
+  - id: flickr30k_retrieval
+    name: flickr30k_retrieval
+    data:
+      dataset: Flickr30K
+      flickr30k_root: ${HYPER3_FLICKR30K_ROOT}
+      flickr30k_split: test
+
+  - id: imagenet_hierarchical
+    name: imagenet_hierarchical
+    data:
+      dataset: ImageNet-WordNet
+      imagenet_val_root: ${HYPER3_IMAGENET_VAL_ROOT}
+      # Omit imagenet_hierarchy_assets_root to use the assets shipped in the
+      # package.

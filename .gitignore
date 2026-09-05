@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.python-version
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.DS_Store
+
+# Secrets / local environment
+.env
+.env.*
+*.pem
+*.key
+secrets/
+
+# Data, checkpoints, experiment output
+/data/
+/datasets/
+/shards/
+/checkpoints/
+/outputs/
+/runs/
+/logs/
+wandb/
+/artifacts/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.tar
+/results/
+
+# Local evaluation dataset locations (copy configs/eval/local_paths.example.yaml)
+configs/eval/local_paths.yaml
+configs/eval/local_paths.*.yaml
+
+# Lockfile: the paper pins are in pyproject.toml
+uv.lock
+!configs/eval/local_paths.example.yaml
+/src/hyper3_clip/models/adaptive_entailment.py

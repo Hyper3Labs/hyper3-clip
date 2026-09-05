@@ -1,0 +1,27 @@
+# Paper Table 4: zero-shot multi-label mAP with the Photo prompt.
+# The "Avg." column is the unweighted mean of the two mAPs and is computed by
+# scripts/summarize_results.py.
+name: paper_table_4
+defaults:
+  batch_size: 128
+  text_batch_size: 256
+  num_workers: 8
+  precision: fp32
+tasks:
+  - id: voc_multilabel
+    name: multilabel_zero_shot
+    data:
+      dataset: VOC
+      manifest_path: ${HYPER3_VOC_MULTILABEL_MANIFEST}
+      class_names_path: ${HYPER3_VOC_CLASS_NAMES_PATH}
+      prompts:
+        - "a photo of a {}."
+
+  - id: coco_multilabel
+    name: multilabel_zero_shot
+    data:
+      dataset: COCO multi-label
+      manifest_path: ${HYPER3_COCO_MULTILABEL_MANIFEST}
+      class_names_path: ${HYPER3_COCO_CLASS_NAMES_PATH}
+      prompts:
+        - "a photo of a {}."

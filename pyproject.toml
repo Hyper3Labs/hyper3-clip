@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hyper3-clip"
+version = "0.1.0"
+description = "Hyper3-CLIP: hierarchy-conditioned hyperbolic vision-language training"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Hyper3Labs" }]
+keywords = ["hyperbolic", "vision-language", "contrastive", "entailment", "clip"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "torch>=2.2",
+  "numpy",
+  "pyyaml",
+  "timm>=1.0",
+  # Pinned to the major version this release is tested against; transformers 5
+  # removed the CLIPTextModel.text_model wrapper, which the checkpoint remapper
+  # handles for weights written under 4.x.
+  "transformers>=5.0,<6",
+  "safetensors",
+  "torchvision",
+  "pillow",
+  "webdataset",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.4",
+]
+
+[project.urls]
+Homepage = "https://huggingface.co/hyper3labs/hyper3-clip"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"hyper3_clip.evaluation" = ["assets/*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"
+filterwarnings = [
+  "ignore::DeprecationWarning",
+]
+markers = [
+  "slow: builds the full ViT-B/16 + CLIP-B/32 paper model",
+]
+
+[tool.ruff]
+line-length = 120
+src = ["src", "tests", "scripts"]
+# Vendored upstream class-name tables; kept byte-identical to their source.
+extend-exclude = ["src/hyper3_clip/evaluation/assets"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

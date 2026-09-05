@@ -1,0 +1,39 @@
+# Copy to a private file (for example configs/eval/local_paths.yaml, which is
+# git-ignored) and fill in the local dataset locations.  The suites reference
+# these names as ${NAME}; anything missing raises when the suite is loaded.
+# Values below are placeholders only.
+
+# --- Table 2: retrieval + ImageNet hierarchy ------------------------------
+HYPER3_COCO2014_ROOT: /path/to/coco2014                 # karpathy/dataset_coco.json + train2014/ + val2014/
+HYPER3_FLICKR30K_ROOT: /path/to/flickr30k               # dataset_flickr30k.json + flickr30k_images/
+HYPER3_IMAGENET_VAL_ROOT: /path/to/imagenet/val         # ImageFolder of 1000 nXXXXXXXX dirs
+
+# --- Table 3 / Table 6: zero-shot classification --------------------------
+# Each root is an ImageFolder whose class dirs are named f"{index:04d}_{slug}".
+HYPER3_CIFAR10_ROOT: /path/to/cifar10_imagefolder
+HYPER3_CIFAR100_ROOT: /path/to/cifar100_imagefolder
+HYPER3_SUN397_ROOT: /path/to/sun397_imagefolder
+HYPER3_CALTECH101_ROOT: /path/to/caltech101_imagefolder
+HYPER3_STL10_ROOT: /path/to/stl10_imagefolder
+HYPER3_FOOD101_ROOT: /path/to/food101_imagefolder
+HYPER3_CUB_ROOT: /path/to/cub_imagefolder
+HYPER3_CARS_ROOT: /path/to/cars_imagefolder
+HYPER3_AIRCRAFT_ROOT: /path/to/aircraft_imagefolder
+HYPER3_PETS_ROOT: /path/to/pets_imagefolder
+HYPER3_FLOWERS_ROOT: /path/to/flowers_imagefolder
+HYPER3_DTD_ROOT: /path/to/dtd_imagefolder
+HYPER3_EUROSAT_ROOT: /path/to/eurosat_imagefolder
+HYPER3_RESISC45_ROOT: /path/to/resisc45_imagefolder
+HYPER3_COUNTRY211_ROOT: /path/to/country211_imagefolder
+
+# --- Table 4: multi-label mAP ---------------------------------------------
+# Build both manifests with scripts/build_multilabel_manifest.py.
+HYPER3_VOC_MULTILABEL_MANIFEST: /path/to/voc_multilabel.jsonl
+HYPER3_VOC_CLASS_NAMES_PATH: /path/to/voc_classes.txt
+HYPER3_COCO_MULTILABEL_MANIFEST: /path/to/coco_multilabel.jsonl
+HYPER3_COCO_CLASS_NAMES_PATH: /path/to/coco_classes.txt
+
+# --- Table 5: hierarchy entailment + the ablation's Avg R@10 --------------
+HYPER3_HIERARCAPS_ANNOTATIONS_PATH: /path/to/hierarcaps_test.csv
+HYPER3_HIERARCAPS_IMAGE_ROOT: /path/to/coco2014/val2014
+HYPER3_COCO2017_ROOT: /path/to/coco2017                 # annotations/captions_val2017.json + val2017/

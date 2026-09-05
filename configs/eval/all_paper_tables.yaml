@@ -1,0 +1,188 @@
+# Tables 2, 3 and 4 in one run.  The two ImageNet tasks name the same root, so
+# the runner fuses them into a single forward pass and both records share one
+# elapsed time (see docs/evaluation.md).
+name: all_paper_tables
+defaults:
+  batch_size: 128
+  text_batch_size: 256
+  num_workers: 8
+  precision: fp32
+tasks:
+  - id: coco_karpathy_retrieval
+    name: coco_karpathy_retrieval
+    data:
+      dataset: COCO Karpathy
+      coco2014_root: ${HYPER3_COCO2014_ROOT}
+      coco_karpathy_split: test
+
+  - id: flickr30k_retrieval
+    name: flickr30k_retrieval
+    data:
+      dataset: Flickr30K
+      flickr30k_root: ${HYPER3_FLICKR30K_ROOT}
+      flickr30k_split: test
+
+  - id: imagenet_hierarchical
+    name: imagenet_hierarchical
+    data:
+      dataset: ImageNet-WordNet
+      imagenet_val_root: ${HYPER3_IMAGENET_VAL_ROOT}
+
+  - id: imagenet_zero_shot
+    name: imagenet_zero_shot
+    data:
+      dataset: ImageNet
+      imagenet_val_root: ${HYPER3_IMAGENET_VAL_ROOT}
+
+  - id: cifar10_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: CIFAR-10
+      root: ${HYPER3_CIFAR10_ROOT}
+      prompt_set: cifar
+      prompt_regime: official
+      class_names_key: cifar10
+
+  - id: cifar100_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: CIFAR-100
+      root: ${HYPER3_CIFAR100_ROOT}
+      prompt_set: cifar
+      prompt_regime: official
+      class_names_key: cifar100
+
+  - id: sun397_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: SUN397
+      root: ${HYPER3_SUN397_ROOT}
+      prompt_set: sun397
+      prompt_regime: official
+      class_names_key: sun397
+
+  - id: caltech101_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: Caltech-101
+      root: ${HYPER3_CALTECH101_ROOT}
+      prompt_set: caltech101
+      prompt_regime: official
+      class_names_key: caltech101
+
+  - id: stl10_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: STL-10
+      root: ${HYPER3_STL10_ROOT}
+      prompt_set: stl10
+      prompt_regime: official
+      class_names_key: stl10
+
+  - id: food101_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: Food-101
+      root: ${HYPER3_FOOD101_ROOT}
+      prompt_set: food101
+      prompt_regime: photo
+      class_names_key: food101
+
+  - id: cub_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: CUB
+      root: ${HYPER3_CUB_ROOT}
+      prompt_set: cub2011
+      prompt_regime: photo
+      class_names_key: cub2011
+
+  - id: cars_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: Cars
+      root: ${HYPER3_CARS_ROOT}
+      prompt_set: cars
+      prompt_regime: official
+      class_names_key: cars
+
+  - id: aircraft_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: Aircraft
+      root: ${HYPER3_AIRCRAFT_ROOT}
+      prompt_set: aircraft
+      prompt_regime: official
+      class_names_key: aircraft
+
+  - id: pets_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: Pets
+      root: ${HYPER3_PETS_ROOT}
+      prompt_set: pets
+      prompt_regime: official
+      class_names_key: pets
+
+  - id: flowers_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: Flowers
+      root: ${HYPER3_FLOWERS_ROOT}
+      prompt_set: flowers102
+      prompt_regime: photo
+      class_names_key: flowers102
+
+  - id: dtd_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: DTD
+      root: ${HYPER3_DTD_ROOT}
+      prompt_set: dtd
+      prompt_regime: official
+      class_names_key: dtd
+
+  - id: eurosat_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: EuroSAT
+      root: ${HYPER3_EUROSAT_ROOT}
+      prompt_set: eurosat
+      prompt_regime: official
+      class_names_key: eurosat
+
+  - id: resisc45_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: RESISC45
+      root: ${HYPER3_RESISC45_ROOT}
+      prompt_set: resisc45
+      prompt_regime: official
+      class_names_key: resisc45
+
+  - id: country211_zero_shot
+    name: imagefolder_zero_shot
+    data:
+      dataset: Country211
+      root: ${HYPER3_COUNTRY211_ROOT}
+      prompt_set: country211
+      prompt_regime: official
+      class_names_key: country211
+
+  - id: voc_multilabel
+    name: multilabel_zero_shot
+    data:
+      dataset: VOC
+      manifest_path: ${HYPER3_VOC_MULTILABEL_MANIFEST}
+      class_names_path: ${HYPER3_VOC_CLASS_NAMES_PATH}
+      prompts:
+        - "a photo of a {}."
+
+  - id: coco_multilabel
+    name: multilabel_zero_shot
+    data:
+      dataset: COCO multi-label
+      manifest_path: ${HYPER3_COCO_MULTILABEL_MANIFEST}
+      class_names_path: ${HYPER3_COCO_CLASS_NAMES_PATH}
+      prompts:
+        - "a photo of a {}."

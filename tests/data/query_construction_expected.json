@@ -1,0 +1,8458 @@
+{
+  "settings": {
+    "max_sentences": 5,
+    "max_phrases": 30,
+    "max_queries_per_image": 6,
+    "use_part_texts": true,
+    "tokenizer": "openai/clip-vit-base-patch32",
+    "max_text_length": 77
+  },
+  "type_codes": {
+    "0": "caption_root",
+    "1": "sentence",
+    "2": "text_box",
+    "3": "phrase"
+  },
+  "fixtures": [
+    {
+      "name": "single_simple",
+      "caption": "a red bicycle",
+      "part_texts": [
+        "a red bicycle"
+      ],
+      "split_sentences": [
+        "a red bicycle"
+      ],
+      "extracted_phrases": [
+        "a red bicycle"
+      ],
+      "full": [
+        {
+          "text": "a red bicycle",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a red bicycle",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a red bicycle"
+        ],
+        "query_owner": [
+          0
+        ],
+        "query_parent": [
+          -1
+        ],
+        "query_weight": [
+          0.0
+        ],
+        "query_source_part": [
+          -1
+        ],
+        "query_input_ids_shape": [
+          1,
+          5
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            736,
+            11652,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "name": "two_sentences",
+      "caption": "A dog runs. A cat sleeps.",
+      "part_texts": [
+        "a dog",
+        "a cat"
+      ],
+      "split_sentences": [
+        "A dog runs.",
+        "A cat sleeps."
+      ],
+      "extracted_phrases": [
+        "A dog runs A cat sleeps"
+      ],
+      "full": [
+        {
+          "text": "A dog runs. A cat sleeps.",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "A dog runs.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "A cat sleeps.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "a dog",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "a cat",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 1
+        },
+        {
+          "text": "A dog runs A cat sleeps",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "A dog runs. A cat sleeps.",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "A dog runs.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "A cat sleeps.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "a dog",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "a cat",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 1
+        },
+        {
+          "text": "A dog runs A cat sleeps",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "A dog runs. A cat sleeps.",
+          "A dog runs.",
+          "A cat sleeps.",
+          "a dog",
+          "a cat",
+          "A dog runs A cat sleeps"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "query_weight": [
+          0.0,
+          1.0,
+          1.0,
+          0.75,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1,
+          0,
+          1,
+          -1
+        ],
+        "query_input_ids_shape": [
+          6,
+          10
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            1929,
+            5586,
+            269,
+            320,
+            2368,
+            16610,
+            269,
+            49407
+          ],
+          [
+            49406,
+            320,
+            1929,
+            5586,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            2368,
+            16610,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            1929,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            2368,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            1929,
+            5586,
+            320,
+            2368,
+            16610,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "three_sentences_bang_q",
+      "caption": "Look! Is that a bird? Yes it is.",
+      "part_texts": [
+        "a bird"
+      ],
+      "split_sentences": [
+        "Look!",
+        "Is that a bird?",
+        "Yes it is."
+      ],
+      "extracted_phrases": [
+        "Look Is that a bird Yes it is"
+      ],
+      "full": [
+        {
+          "text": "Look! Is that a bird? Yes it is.",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "Look!",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "Is that a bird?",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "Yes it is.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "a bird",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "Look Is that a bird Yes it is",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "Look! Is that a bird? Yes it is.",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "Look!",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "Is that a bird?",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "Yes it is.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "a bird",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "Look Is that a bird Yes it is",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "Look! Is that a bird? Yes it is.",
+          "Look!",
+          "Is that a bird?",
+          "Yes it is.",
+          "a bird",
+          "Look Is that a bird Yes it is"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "query_weight": [
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1,
+          -1,
+          0,
+          -1
+        ],
+        "query_input_ids_shape": [
+          6,
+          13
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            1012,
+            256,
+            533,
+            682,
+            320,
+            3329,
+            286,
+            1958,
+            585,
+            533,
+            269,
+            49407
+          ],
+          [
+            49406,
+            1012,
+            256,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            533,
+            682,
+            320,
+            3329,
+            286,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            1958,
+            585,
+            533,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            3329,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            1012,
+            533,
+            682,
+            320,
+            3329,
+            1958,
+            585,
+            533,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "semicolon_sentence_split",
+      "caption": "The sun sets; the moon rises.",
+      "part_texts": [
+        "the sun",
+        "the moon"
+      ],
+      "split_sentences": [
+        "The sun sets;",
+        "the moon rises."
+      ],
+      "extracted_phrases": [
+        "The sun sets",
+        "the moon rises"
+      ],
+      "full": [
+        {
+          "text": "The sun sets; the moon rises.",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "The sun sets;",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "the moon rises.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "the sun",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "the moon",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 1
+        },
+        {
+          "text": "The sun sets",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "the moon rises",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "The sun sets; the moon rises.",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "The sun sets;",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "the moon rises.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "the sun",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "the moon",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 1
+        },
+        {
+          "text": "The sun sets",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "The sun sets; the moon rises.",
+          "The sun sets;",
+          "the moon rises.",
+          "the sun",
+          "the moon",
+          "The sun sets"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "query_weight": [
+          0.0,
+          1.0,
+          1.0,
+          0.75,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1,
+          0,
+          1,
+          -1
+        ],
+        "query_input_ids_shape": [
+          6,
+          10
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            518,
+            2176,
+            4650,
+            282,
+            518,
+            3293,
+            13362,
+            269,
+            49407
+          ],
+          [
+            49406,
+            518,
+            2176,
+            4650,
+            282,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            518,
+            3293,
+            13362,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            518,
+            2176,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            518,
+            3293,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            518,
+            2176,
+            4650,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "newline_split",
+      "caption": "line one\nline two\nline three",
+      "part_texts": [],
+      "split_sentences": [
+        "line one",
+        "line two",
+        "line three"
+      ],
+      "extracted_phrases": [
+        "line one line two line three"
+      ],
+      "full": [
+        {
+          "text": "line one line two line three",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "line one",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "line two",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "line three",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "line one line two line three",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "line one",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "line two",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "line three",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "line one line two line three",
+          "line one",
+          "line two",
+          "line three"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "query_input_ids_shape": [
+          4,
+          8
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            1148,
+            637,
+            1148,
+            1237,
+            1148,
+            2097,
+            49407
+          ],
+          [
+            49406,
+            1148,
+            637,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            1148,
+            1237,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            1148,
+            2097,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "six_sentences_over_max",
+      "caption": "One. Two. Three. Four. Five. Six. Seven.",
+      "part_texts": [],
+      "split_sentences": [
+        "One.",
+        "Two.",
+        "Three.",
+        "Four.",
+        "Five.",
+        "Six.",
+        "Seven."
+      ],
+      "extracted_phrases": [
+        "One Two Three Four Five Six Seven"
+      ],
+      "full": [
+        {
+          "text": "One. Two. Three. Four. Five. Six. Seven.",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "One.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "Two.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "Three.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "Four.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "Five.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "One Two Three Four Five Six Seven",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "One. Two. Three. Four. Five. Six. Seven.",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "One.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "Two.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "Three.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "Four.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "Five.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "One. Two. Three. Four. Five. Six. Seven.",
+          "One.",
+          "Two.",
+          "Three.",
+          "Four.",
+          "Five."
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "query_input_ids_shape": [
+          6,
+          16
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            637,
+            269,
+            1237,
+            269,
+            2097,
+            269,
+            2721,
+            269,
+            3127,
+            269,
+            4093,
+            269,
+            5757,
+            269,
+            49407
+          ],
+          [
+            49406,
+            637,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            1237,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            2097,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            2721,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            3127,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "connector_and",
+      "caption": "a cat and a dog",
+      "part_texts": [
+        "a cat"
+      ],
+      "split_sentences": [
+        "a cat and a dog"
+      ],
+      "extracted_phrases": [
+        "a cat",
+        "a dog"
+      ],
+      "full": [
+        {
+          "text": "a cat and a dog",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a cat",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "a dog",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a cat and a dog",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a cat",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "a dog",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a cat and a dog",
+          "a cat",
+          "a dog"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          -1
+        ],
+        "query_input_ids_shape": [
+          3,
+          7
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            2368,
+            537,
+            320,
+            1929,
+            49407
+          ],
+          [
+            49406,
+            320,
+            2368,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            1929,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "connector_with",
+      "caption": "a man with a hat",
+      "part_texts": [
+        "a man"
+      ],
+      "split_sentences": [
+        "a man with a hat"
+      ],
+      "extracted_phrases": [
+        "a man",
+        "a hat"
+      ],
+      "full": [
+        {
+          "text": "a man with a hat",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a man",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "a hat",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a man with a hat",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a man",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "a hat",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a man with a hat",
+          "a man",
+          "a hat"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          -1
+        ],
+        "query_input_ids_shape": [
+          3,
+          7
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            786,
+            593,
+            320,
+            3801,
+            49407
+          ],
+          [
+            49406,
+            320,
+            786,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            3801,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "connector_near",
+      "caption": "a boat near the pier",
+      "part_texts": [
+        "a boat"
+      ],
+      "split_sentences": [
+        "a boat near the pier"
+      ],
+      "extracted_phrases": [
+        "a boat",
+        "the pier"
+      ],
+      "full": [
+        {
+          "text": "a boat near the pier",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a boat",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "the pier",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a boat near the pier",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a boat",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "the pier",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a boat near the pier",
+          "a boat",
+          "the pier"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          -1
+        ],
+        "query_input_ids_shape": [
+          3,
+          7
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            4440,
+            2252,
+            518,
+            11348,
+            49407
+          ],
+          [
+            49406,
+            320,
+            4440,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            518,
+            11348,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "connector_beside",
+      "caption": "a lamp beside the couch",
+      "part_texts": [
+        "a lamp"
+      ],
+      "split_sentences": [
+        "a lamp beside the couch"
+      ],
+      "extracted_phrases": [
+        "a lamp",
+        "the couch"
+      ],
+      "full": [
+        {
+          "text": "a lamp beside the couch",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a lamp",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "the couch",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a lamp beside the couch",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a lamp",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "the couch",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a lamp beside the couch",
+          "a lamp",
+          "the couch"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          -1
+        ],
+        "query_input_ids_shape": [
+          3,
+          7
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            10725,
+            13519,
+            518,
+            12724,
+            49407
+          ],
+          [
+            49406,
+            320,
+            10725,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            518,
+            12724,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "connector_behind",
+      "caption": "a tree behind the fence",
+      "part_texts": [
+        "a tree"
+      ],
+      "split_sentences": [
+        "a tree behind the fence"
+      ],
+      "extracted_phrases": [
+        "a tree",
+        "the fence"
+      ],
+      "full": [
+        {
+          "text": "a tree behind the fence",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a tree",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "the fence",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a tree behind the fence",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a tree",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "the fence",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a tree behind the fence",
+          "a tree",
+          "the fence"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          -1
+        ],
+        "query_input_ids_shape": [
+          3,
+          7
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            2677,
+            2403,
+            518,
+            12679,
+            49407
+          ],
+          [
+            49406,
+            320,
+            2677,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            518,
+            12679,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "connector_under",
+      "caption": "a cat under the table",
+      "part_texts": [
+        "a cat"
+      ],
+      "split_sentences": [
+        "a cat under the table"
+      ],
+      "extracted_phrases": [
+        "a cat",
+        "the table"
+      ],
+      "full": [
+        {
+          "text": "a cat under the table",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a cat",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "the table",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a cat under the table",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a cat",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "the table",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a cat under the table",
+          "a cat",
+          "the table"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          -1
+        ],
+        "query_input_ids_shape": [
+          3,
+          7
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            2368,
+            1798,
+            518,
+            2175,
+            49407
+          ],
+          [
+            49406,
+            320,
+            2368,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            518,
+            2175,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "connector_above",
+      "caption": "a bird above the roof",
+      "part_texts": [
+        "a bird"
+      ],
+      "split_sentences": [
+        "a bird above the roof"
+      ],
+      "extracted_phrases": [
+        "a bird",
+        "the roof"
+      ],
+      "full": [
+        {
+          "text": "a bird above the roof",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a bird",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "the roof",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a bird above the roof",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a bird",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "the roof",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a bird above the roof",
+          "a bird",
+          "the roof"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          -1
+        ],
+        "query_input_ids_shape": [
+          3,
+          7
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            3329,
+            4348,
+            518,
+            6449,
+            49407
+          ],
+          [
+            49406,
+            320,
+            3329,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            518,
+            6449,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "connector_around",
+      "caption": "a scarf around her neck",
+      "part_texts": [
+        "a scarf"
+      ],
+      "split_sentences": [
+        "a scarf around her neck"
+      ],
+      "extracted_phrases": [
+        "a scarf",
+        "her neck"
+      ],
+      "full": [
+        {
+          "text": "a scarf around her neck",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a scarf",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "her neck",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a scarf around her neck",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a scarf",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "her neck",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a scarf around her neck",
+          "a scarf",
+          "her neck"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          -1
+        ],
+        "query_input_ids_shape": [
+          3,
+          7
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            13365,
+            1630,
+            899,
+            6906,
+            49407
+          ],
+          [
+            49406,
+            320,
+            13365,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            899,
+            6906,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "connector_next_to",
+      "caption": "a chair next to the door",
+      "part_texts": [
+        "a chair"
+      ],
+      "split_sentences": [
+        "a chair next to the door"
+      ],
+      "extracted_phrases": [
+        "a chair",
+        "the door"
+      ],
+      "full": [
+        {
+          "text": "a chair next to the door",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a chair",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "the door",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a chair next to the door",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a chair",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "the door",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a chair next to the door",
+          "a chair",
+          "the door"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          -1
+        ],
+        "query_input_ids_shape": [
+          3,
+          8
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            4269,
+            1131,
+            531,
+            518,
+            2489,
+            49407
+          ],
+          [
+            49406,
+            320,
+            4269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            518,
+            2489,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "connector_uppercase",
+      "caption": "a cat AND a dog NEXT TO a wall",
+      "part_texts": [],
+      "split_sentences": [
+        "a cat AND a dog NEXT TO a wall"
+      ],
+      "extracted_phrases": [
+        "a cat",
+        "a dog",
+        "a wall"
+      ],
+      "full": [
+        {
+          "text": "a cat AND a dog NEXT TO a wall",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a cat",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a dog",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a wall",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a cat AND a dog NEXT TO a wall",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a cat",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a dog",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a wall",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a cat AND a dog NEXT TO a wall",
+          "a cat",
+          "a dog",
+          "a wall"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "query_input_ids_shape": [
+          4,
+          11
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            2368,
+            537,
+            320,
+            1929,
+            1131,
+            531,
+            320,
+            2569,
+            49407
+          ],
+          [
+            49406,
+            320,
+            2368,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            1929,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            2569,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "connector_mixed_case",
+      "caption": "a car With a roof Near a Tree",
+      "part_texts": [],
+      "split_sentences": [
+        "a car With a roof Near a Tree"
+      ],
+      "extracted_phrases": [
+        "a car",
+        "a roof",
+        "a Tree"
+      ],
+      "full": [
+        {
+          "text": "a car With a roof Near a Tree",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a car",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a roof",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a Tree",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a car With a roof Near a Tree",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a car",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a roof",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a Tree",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a car With a roof Near a Tree",
+          "a car",
+          "a roof",
+          "a Tree"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "query_input_ids_shape": [
+          4,
+          10
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            1615,
+            593,
+            320,
+            6449,
+            2252,
+            320,
+            2677,
+            49407
+          ],
+          [
+            49406,
+            320,
+            1615,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            6449,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            2677,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "all_connectors_chain",
+      "caption": "a cat and a dog with a ball near a tree beside a wall behind a shed under a roof above a sign around a pole next to a gate",
+      "part_texts": [],
+      "split_sentences": [
+        "a cat and a dog with a ball near a tree beside a wall behind a shed under a roof above a sign around a pole next to a gate"
+      ],
+      "extracted_phrases": [
+        "a cat",
+        "a dog",
+        "a ball",
+        "a tree",
+        "a wall",
+        "a shed",
+        "a roof",
+        "a sign",
+        "a pole",
+        "a gate"
+      ],
+      "full": [
+        {
+          "text": "a cat and a dog with a ball near a tree beside a wall behind a shed under a roof above a sign around a pole next to a gate",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a cat",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a dog",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a ball",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a tree",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a wall",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a shed",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a roof",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a sign",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a pole",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a gate",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a cat and a dog with a ball near a tree beside a wall behind a shed under a roof above a sign around a pole next to a gate",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a cat",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a dog",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a ball",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a tree",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a wall",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a cat and a dog with a ball near a tree beside a wall behind a shed under a roof above a sign around a pole next to a gate",
+          "a cat",
+          "a dog",
+          "a ball",
+          "a tree",
+          "a wall"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "query_input_ids_shape": [
+          6,
+          32
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            2368,
+            537,
+            320,
+            1929,
+            593,
+            320,
+            1069,
+            2252,
+            320,
+            2677,
+            13519,
+            320,
+            2569,
+            2403,
+            320,
+            1492,
+            1798,
+            320,
+            6449,
+            4348,
+            320,
+            2292,
+            1630,
+            320,
+            8170,
+            1131,
+            531,
+            320,
+            3302,
+            49407
+          ],
+          [
+            49406,
+            320,
+            2368,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            1929,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            1069,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            2677,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            2569,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "parentheses",
+      "caption": "a red car (parked outside) on the street",
+      "part_texts": [
+        "a red car"
+      ],
+      "split_sentences": [
+        "a red car (parked outside) on the street"
+      ],
+      "extracted_phrases": [
+        "a red car",
+        "parked outside",
+        "on the street"
+      ],
+      "full": [
+        {
+          "text": "a red car (parked outside) on the street",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a red car",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "parked outside",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "on the street",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a red car (parked outside) on the street",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a red car",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "parked outside",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "on the street",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a red car (parked outside) on the street",
+          "a red car",
+          "parked outside",
+          "on the street"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.5,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          -1,
+          -1
+        ],
+        "query_input_ids_shape": [
+          4,
+          12
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            736,
+            1615,
+            263,
+            16487,
+            2782,
+            264,
+            525,
+            518,
+            2012,
+            49407
+          ],
+          [
+            49406,
+            320,
+            736,
+            1615,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            16487,
+            2782,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            525,
+            518,
+            2012,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "commas",
+      "caption": "apples, oranges, bananas on a table",
+      "part_texts": [
+        "apples"
+      ],
+      "split_sentences": [
+        "apples, oranges, bananas on a table"
+      ],
+      "extracted_phrases": [
+        "bananas on a table"
+      ],
+      "full": [
+        {
+          "text": "apples, oranges, bananas on a table",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "apples",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "bananas on a table",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "apples, oranges, bananas on a table",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "apples",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "bananas on a table",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "apples, oranges, bananas on a table",
+          "apples",
+          "bananas on a table"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          -1
+        ],
+        "query_input_ids_shape": [
+          3,
+          10
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            14032,
+            267,
+            32417,
+            267,
+            19121,
+            525,
+            320,
+            2175,
+            49407
+          ],
+          [
+            49406,
+            14032,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            19121,
+            525,
+            320,
+            2175,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "colon_semicolon",
+      "caption": "menu: soup; salad; bread rolls",
+      "part_texts": [],
+      "split_sentences": [
+        "menu: soup;",
+        "salad;",
+        "bread rolls"
+      ],
+      "extracted_phrases": [
+        "bread rolls"
+      ],
+      "full": [
+        {
+          "text": "menu: soup; salad; bread rolls",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "menu: soup;",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "salad;",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "bread rolls",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "menu: soup; salad; bread rolls",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "menu: soup;",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "salad;",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "bread rolls",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "menu: soup; salad; bread rolls",
+          "menu: soup;",
+          "salad;",
+          "bread rolls"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "query_input_ids_shape": [
+          4,
+          10
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            6225,
+            281,
+            7077,
+            282,
+            6188,
+            282,
+            5066,
+            8614,
+            49407
+          ],
+          [
+            49406,
+            6225,
+            281,
+            7077,
+            282,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            6188,
+            282,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            5066,
+            8614,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "long_fragment_gt8_words",
+      "caption": "a very long uninterrupted description of a busy city street scene in the late afternoon light",
+      "part_texts": [],
+      "split_sentences": [
+        "a very long uninterrupted description of a busy city street scene in the late afternoon light"
+      ],
+      "extracted_phrases": [
+        "a very long uninterrupted description of",
+        "description of a busy city street",
+        "city street scene in the late",
+        "the late afternoon light"
+      ],
+      "full": [
+        {
+          "text": "a very long uninterrupted description of a busy city street scene in the late afternoon light",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a very long uninterrupted description of",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "description of a busy city street",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "city street scene in the late",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "the late afternoon light",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a very long uninterrupted description of a busy city street scene in the late afternoon light",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "a very long uninterrupted description of",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "description of a busy city street",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "city street scene in the late",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "the late afternoon light",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a very long uninterrupted description of a busy city street scene in the late afternoon light",
+          "a very long uninterrupted description of",
+          "description of a busy city street",
+          "city street scene in the late",
+          "the late afternoon light"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "query_input_ids_shape": [
+          5,
+          19
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            1070,
+            1538,
+            569,
+            30288,
+            13951,
+            539,
+            320,
+            4354,
+            1305,
+            2012,
+            3562,
+            530,
+            518,
+            2325,
+            2716,
+            1395,
+            49407
+          ],
+          [
+            49406,
+            320,
+            1070,
+            1538,
+            569,
+            30288,
+            13951,
+            539,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            13951,
+            539,
+            320,
+            4354,
+            1305,
+            2012,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            1305,
+            2012,
+            3562,
+            530,
+            518,
+            2325,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            518,
+            2325,
+            2716,
+            1395,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "long_fragment_exactly_nine",
+      "caption": "one two three four five six seven eight nine",
+      "part_texts": [],
+      "split_sentences": [
+        "one two three four five six seven eight nine"
+      ],
+      "extracted_phrases": [
+        "one two three four five six",
+        "five six seven eight nine"
+      ],
+      "full": [
+        {
+          "text": "one two three four five six seven eight nine",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "one two three four five six",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "five six seven eight nine",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "one two three four five six seven eight nine",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "one two three four five six",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "five six seven eight nine",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "one two three four five six seven eight nine",
+          "one two three four five six",
+          "five six seven eight nine"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.5,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1
+        ],
+        "query_input_ids_shape": [
+          3,
+          11
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            637,
+            1237,
+            2097,
+            2721,
+            3127,
+            4093,
+            5757,
+            7910,
+            7330,
+            49407
+          ],
+          [
+            49406,
+            637,
+            1237,
+            2097,
+            2721,
+            3127,
+            4093,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            3127,
+            4093,
+            5757,
+            7910,
+            7330,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "fragment_exactly_eight",
+      "caption": "one two three four five six seven eight",
+      "part_texts": [],
+      "split_sentences": [
+        "one two three four five six seven eight"
+      ],
+      "extracted_phrases": [
+        "one two three four five six seven eight"
+      ],
+      "full": [
+        {
+          "text": "one two three four five six seven eight",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "one two three four five six seven eight",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "one two three four five six seven eight"
+        ],
+        "query_owner": [
+          0
+        ],
+        "query_parent": [
+          -1
+        ],
+        "query_weight": [
+          0.0
+        ],
+        "query_source_part": [
+          -1
+        ],
+        "query_input_ids_shape": [
+          1,
+          10
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            637,
+            1237,
+            2097,
+            2721,
+            3127,
+            4093,
+            5757,
+            7910,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "name": "fragment_one_word",
+      "caption": "sky",
+      "part_texts": [],
+      "split_sentences": [
+        "sky"
+      ],
+      "extracted_phrases": [],
+      "full": [
+        {
+          "text": "sky",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "sky",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "sky"
+        ],
+        "query_owner": [
+          0
+        ],
+        "query_parent": [
+          -1
+        ],
+        "query_weight": [
+          0.0
+        ],
+        "query_source_part": [
+          -1
+        ],
+        "query_input_ids_shape": [
+          1,
+          3
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            2390,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "name": "duplicate_case_only",
+      "caption": "A Red Car",
+      "part_texts": [
+        "a red car",
+        "A RED CAR",
+        "A Red Car"
+      ],
+      "split_sentences": [
+        "A Red Car"
+      ],
+      "extracted_phrases": [
+        "A Red Car"
+      ],
+      "full": [
+        {
+          "text": "A Red Car",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "A Red Car",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "A Red Car"
+        ],
+        "query_owner": [
+          0
+        ],
+        "query_parent": [
+          -1
+        ],
+        "query_weight": [
+          0.0
+        ],
+        "query_source_part": [
+          -1
+        ],
+        "query_input_ids_shape": [
+          1,
+          5
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            736,
+            1615,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "name": "duplicate_caption_equals_sentence",
+      "caption": "a lone tree on a hill",
+      "part_texts": [
+        "a lone tree on a hill"
+      ],
+      "split_sentences": [
+        "a lone tree on a hill"
+      ],
+      "extracted_phrases": [
+        "a lone tree on a hill"
+      ],
+      "full": [
+        {
+          "text": "a lone tree on a hill",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a lone tree on a hill",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a lone tree on a hill"
+        ],
+        "query_owner": [
+          0
+        ],
+        "query_parent": [
+          -1
+        ],
+        "query_weight": [
+          0.0
+        ],
+        "query_source_part": [
+          -1
+        ],
+        "query_input_ids_shape": [
+          1,
+          8
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            13576,
+            2677,
+            525,
+            320,
+            2682,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "name": "short_tokens_lt3_chars",
+      "caption": "a b c",
+      "part_texts": [
+        "a",
+        "ab",
+        "abc",
+        "  ",
+        ""
+      ],
+      "split_sentences": [
+        "a b c"
+      ],
+      "extracted_phrases": [
+        "a b c"
+      ],
+      "full": [
+        {
+          "text": "a b c",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "abc",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 2
+        }
+      ],
+      "paper": [
+        {
+          "text": "a b c",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "abc",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 2
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a b c",
+          "abc"
+        ],
+        "query_owner": [
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75
+        ],
+        "query_source_part": [
+          -1,
+          2
+        ],
+        "query_input_ids_shape": [
+          2,
+          5
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            321,
+            322,
+            49407
+          ],
+          [
+            49406,
+            5334,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "empty_text_boxes",
+      "caption": "an empty room with white walls",
+      "part_texts": [
+        "",
+        "   ",
+        "\n"
+      ],
+      "split_sentences": [
+        "an empty room with white walls"
+      ],
+      "extracted_phrases": [
+        "an empty room",
+        "white walls"
+      ],
+      "full": [
+        {
+          "text": "an empty room with white walls",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "an empty room",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "white walls",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "an empty room with white walls",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "an empty room",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "white walls",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "an empty room with white walls",
+          "an empty room",
+          "white walls"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.5,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1
+        ],
+        "query_input_ids_shape": [
+          3,
+          8
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            550,
+            7893,
+            1530,
+            593,
+            1579,
+            8258,
+            49407
+          ],
+          [
+            49406,
+            550,
+            7893,
+            1530,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            1579,
+            8258,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "empty_caption",
+      "caption": "",
+      "part_texts": [
+        "a box",
+        "another box"
+      ],
+      "split_sentences": [],
+      "extracted_phrases": [],
+      "full": [
+        {
+          "text": "a box",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "another box",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a box",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "another box",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a box",
+          "another box"
+        ],
+        "query_owner": [
+          0,
+          0
+        ],
+        "query_parent": [
+          0,
+          0
+        ],
+        "query_weight": [
+          0.75,
+          0.75
+        ],
+        "query_source_part": [
+          0,
+          1
+        ],
+        "query_input_ids_shape": [
+          2,
+          4
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            2063,
+            49407
+          ],
+          [
+            49406,
+            1380,
+            2063,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "name": "whitespace_caption",
+      "caption": "   \n  ",
+      "part_texts": [
+        "a box"
+      ],
+      "split_sentences": [],
+      "extracted_phrases": [],
+      "full": [
+        {
+          "text": "a box",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        }
+      ],
+      "paper": [
+        {
+          "text": "a box",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a box"
+        ],
+        "query_owner": [
+          0
+        ],
+        "query_parent": [
+          0
+        ],
+        "query_weight": [
+          0.75
+        ],
+        "query_source_part": [
+          0
+        ],
+        "query_input_ids_shape": [
+          1,
+          4
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            2063,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "name": "whitespace_collapse",
+      "caption": "a    red     car   ",
+      "part_texts": [
+        "  a   red   car  "
+      ],
+      "split_sentences": [
+        "a    red     car"
+      ],
+      "extracted_phrases": [
+        "a red car"
+      ],
+      "full": [
+        {
+          "text": "a red car",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a red car",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a red car"
+        ],
+        "query_owner": [
+          0
+        ],
+        "query_parent": [
+          -1
+        ],
+        "query_weight": [
+          0.0
+        ],
+        "query_source_part": [
+          -1
+        ],
+        "query_input_ids_shape": [
+          1,
+          5
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            736,
+            1615,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "name": "hyphen_apostrophe",
+      "caption": "a well-worn cowboy's hat, sun-bleached",
+      "part_texts": [
+        "cowboy's hat"
+      ],
+      "split_sentences": [
+        "a well-worn cowboy's hat, sun-bleached"
+      ],
+      "extracted_phrases": [
+        "a well-worn cowboy's hat"
+      ],
+      "full": [
+        {
+          "text": "a well-worn cowboy's hat, sun-bleached",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "cowboy's hat",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "a well-worn cowboy's hat",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "a well-worn cowboy's hat, sun-bleached",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "cowboy's hat",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "a well-worn cowboy's hat",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a well-worn cowboy's hat, sun-bleached",
+          "cowboy's hat",
+          "a well-worn cowboy's hat"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          -1
+        ],
+        "query_input_ids_shape": [
+          3,
+          14
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            1123,
+            268,
+            9037,
+            13657,
+            568,
+            3801,
+            267,
+            2176,
+            268,
+            1447,
+            17048,
+            49407
+          ],
+          [
+            49406,
+            13657,
+            568,
+            3801,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            1123,
+            268,
+            9037,
+            13657,
+            568,
+            3801,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "punctuation_stripped",
+      "caption": "wow!!! amazing... really?!",
+      "part_texts": [],
+      "split_sentences": [
+        "wow!!!",
+        "amazing...",
+        "really?!"
+      ],
+      "extracted_phrases": [
+        "wow amazing really"
+      ],
+      "full": [
+        {
+          "text": "wow!!! amazing... really?!",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "wow!!!",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "amazing...",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "really?!",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "wow amazing really",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "wow!!! amazing... really?!",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "wow!!!",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "amazing...",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "really?!",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "wow amazing really",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "wow!!! amazing... really?!",
+          "wow!!!",
+          "amazing...",
+          "really?!",
+          "wow amazing really"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "query_weight": [
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "query_input_ids_shape": [
+          5,
+          8
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            2781,
+            995,
+            1370,
+            678,
+            1414,
+            2835,
+            49407
+          ],
+          [
+            49406,
+            2781,
+            995,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            1370,
+            678,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            1414,
+            2835,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            2781,
+            1370,
+            1414,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "digits_alnum",
+      "caption": "bus 42 and taxi 7B parked",
+      "part_texts": [
+        "bus 42"
+      ],
+      "split_sentences": [
+        "bus 42 and taxi 7B parked"
+      ],
+      "extracted_phrases": [
+        "bus 42",
+        "taxi 7B parked"
+      ],
+      "full": [
+        {
+          "text": "bus 42 and taxi 7B parked",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "bus 42",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "taxi 7B parked",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "bus 42 and taxi 7B parked",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "bus 42",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "taxi 7B parked",
+          "type": 3,
+          "parent": 0,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "bus 42 and taxi 7B parked",
+          "bus 42",
+          "taxi 7B parked"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.5
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          -1
+        ],
+        "query_input_ids_shape": [
+          3,
+          10
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            2840,
+            275,
+            273,
+            537,
+            11380,
+            278,
+            321,
+            16487,
+            49407
+          ],
+          [
+            49406,
+            2840,
+            275,
+            273,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            11380,
+            278,
+            321,
+            16487,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "many_boxes_31",
+      "caption": "a crowded shelf",
+      "part_texts": [
+        "item number 00",
+        "item number 01",
+        "item number 02",
+        "item number 03",
+        "item number 04",
+        "item number 05",
+        "item number 06",
+        "item number 07",
+        "item number 08",
+        "item number 09",
+        "item number 10",
+        "item number 11",
+        "item number 12",
+        "item number 13",
+        "item number 14",
+        "item number 15",
+        "item number 16",
+        "item number 17",
+        "item number 18",
+        "item number 19",
+        "item number 20",
+        "item number 21",
+        "item number 22",
+        "item number 23",
+        "item number 24",
+        "item number 25",
+        "item number 26",
+        "item number 27",
+        "item number 28",
+        "item number 29",
+        "item number 30"
+      ],
+      "split_sentences": [
+        "a crowded shelf"
+      ],
+      "extracted_phrases": [
+        "a crowded shelf"
+      ],
+      "full": [
+        {
+          "text": "a crowded shelf",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "item number 00",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "item number 01",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 1
+        },
+        {
+          "text": "item number 02",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 2
+        },
+        {
+          "text": "item number 03",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 3
+        },
+        {
+          "text": "item number 04",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 4
+        },
+        {
+          "text": "item number 05",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 5
+        },
+        {
+          "text": "item number 06",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 6
+        },
+        {
+          "text": "item number 07",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 7
+        },
+        {
+          "text": "item number 08",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 8
+        },
+        {
+          "text": "item number 09",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 9
+        },
+        {
+          "text": "item number 10",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 10
+        },
+        {
+          "text": "item number 11",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 11
+        },
+        {
+          "text": "item number 12",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 12
+        },
+        {
+          "text": "item number 13",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 13
+        },
+        {
+          "text": "item number 14",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 14
+        },
+        {
+          "text": "item number 15",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 15
+        },
+        {
+          "text": "item number 16",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 16
+        },
+        {
+          "text": "item number 17",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 17
+        },
+        {
+          "text": "item number 18",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 18
+        },
+        {
+          "text": "item number 19",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 19
+        },
+        {
+          "text": "item number 20",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 20
+        },
+        {
+          "text": "item number 21",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 21
+        },
+        {
+          "text": "item number 22",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 22
+        },
+        {
+          "text": "item number 23",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 23
+        },
+        {
+          "text": "item number 24",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 24
+        },
+        {
+          "text": "item number 25",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 25
+        },
+        {
+          "text": "item number 26",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 26
+        },
+        {
+          "text": "item number 27",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 27
+        },
+        {
+          "text": "item number 28",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 28
+        },
+        {
+          "text": "item number 29",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 29
+        }
+      ],
+      "paper": [
+        {
+          "text": "a crowded shelf",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "item number 00",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "item number 01",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 1
+        },
+        {
+          "text": "item number 02",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 2
+        },
+        {
+          "text": "item number 03",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 3
+        },
+        {
+          "text": "item number 04",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 4
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a crowded shelf",
+          "item number 00",
+          "item number 01",
+          "item number 02",
+          "item number 03",
+          "item number 04"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "query_input_ids_shape": [
+          6,
+          6
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            20182,
+            10955,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            8532,
+            2842,
+            271,
+            271,
+            49407
+          ],
+          [
+            49406,
+            8532,
+            2842,
+            271,
+            272,
+            49407
+          ],
+          [
+            49406,
+            8532,
+            2842,
+            271,
+            273,
+            49407
+          ],
+          [
+            49406,
+            8532,
+            2842,
+            271,
+            274,
+            49407
+          ],
+          [
+            49406,
+            8532,
+            2842,
+            271,
+            275,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "name": "many_boxes_35_dupes",
+      "caption": "a crowded shelf",
+      "part_texts": [
+        "item 0",
+        "item 1",
+        "item 2",
+        "item 3",
+        "item 4",
+        "item 0",
+        "item 1",
+        "item 2",
+        "item 3",
+        "item 4",
+        "item 0",
+        "item 1",
+        "item 2",
+        "item 3",
+        "item 4",
+        "item 0",
+        "item 1",
+        "item 2",
+        "item 3",
+        "item 4",
+        "item 0",
+        "item 1",
+        "item 2",
+        "item 3",
+        "item 4",
+        "item 0",
+        "item 1",
+        "item 2",
+        "item 3",
+        "item 4",
+        "item 0",
+        "item 1",
+        "item 2",
+        "item 3",
+        "item 4"
+      ],
+      "split_sentences": [
+        "a crowded shelf"
+      ],
+      "extracted_phrases": [
+        "a crowded shelf"
+      ],
+      "full": [
+        {
+          "text": "a crowded shelf",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "item 0",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "item 1",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 1
+        },
+        {
+          "text": "item 2",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 2
+        },
+        {
+          "text": "item 3",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 3
+        },
+        {
+          "text": "item 4",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 4
+        }
+      ],
+      "paper": [
+        {
+          "text": "a crowded shelf",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "item 0",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "item 1",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 1
+        },
+        {
+          "text": "item 2",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 2
+        },
+        {
+          "text": "item 3",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 3
+        },
+        {
+          "text": "item 4",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 4
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "a crowded shelf",
+          "item 0",
+          "item 1",
+          "item 2",
+          "item 3",
+          "item 4"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75
+        ],
+        "query_source_part": [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "query_input_ids_shape": [
+          6,
+          5
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            20182,
+            10955,
+            49407
+          ],
+          [
+            49406,
+            8532,
+            271,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            8532,
+            272,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            8532,
+            273,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            8532,
+            274,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            8532,
+            275,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "over_six_queries",
+      "caption": "A dog runs. A cat sleeps. A bird flies. A fish swims.",
+      "part_texts": [
+        "a dog",
+        "a cat",
+        "a bird",
+        "a fish",
+        "water"
+      ],
+      "split_sentences": [
+        "A dog runs.",
+        "A cat sleeps.",
+        "A bird flies.",
+        "A fish swims."
+      ],
+      "extracted_phrases": [
+        "A dog runs A cat sleeps",
+        "cat sleeps A bird flies A",
+        "flies A fish swims"
+      ],
+      "full": [
+        {
+          "text": "A dog runs. A cat sleeps. A bird flies. A fish swims.",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "A dog runs.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "A cat sleeps.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "A bird flies.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "A fish swims.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "a dog",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "a cat",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 1
+        },
+        {
+          "text": "a bird",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 2
+        },
+        {
+          "text": "a fish",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 3
+        },
+        {
+          "text": "water",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 4
+        },
+        {
+          "text": "A dog runs A cat sleeps",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "cat sleeps A bird flies A",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "flies A fish swims",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "A dog runs. A cat sleeps. A bird flies. A fish swims.",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "A dog runs.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "A cat sleeps.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "A bird flies.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "A fish swims.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "a dog",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "A dog runs. A cat sleeps. A bird flies. A fish swims.",
+          "A dog runs.",
+          "A cat sleeps.",
+          "A bird flies.",
+          "A fish swims.",
+          "a dog"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.75
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          0
+        ],
+        "query_input_ids_shape": [
+          6,
+          18
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            320,
+            1929,
+            5586,
+            269,
+            320,
+            2368,
+            16610,
+            269,
+            320,
+            3329,
+            8070,
+            269,
+            320,
+            2759,
+            46798,
+            269,
+            49407
+          ],
+          [
+            49406,
+            320,
+            1929,
+            5586,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            2368,
+            16610,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            3329,
+            8070,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            2759,
+            46798,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            1929,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "no_sentence_phrase_parent_is_caption",
+      "caption": "cats and dogs and birds",
+      "part_texts": [],
+      "split_sentences": [
+        "cats and dogs and birds"
+      ],
+      "extracted_phrases": [],
+      "full": [
+        {
+          "text": "cats and dogs and birds",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "cats and dogs and birds",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "cats and dogs and birds"
+        ],
+        "query_owner": [
+          0
+        ],
+        "query_parent": [
+          -1
+        ],
+        "query_weight": [
+          0.0
+        ],
+        "query_source_part": [
+          -1
+        ],
+        "query_input_ids_shape": [
+          1,
+          7
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            3989,
+            537,
+            3255,
+            537,
+            4337,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "name": "kitchen_sink",
+      "caption": "In the foreground, a woman with a red umbrella walks next to a parked bicycle; behind her, a bus (route 12) waits at the stop. Children play around a fountain under the trees.",
+      "part_texts": [
+        "a woman",
+        "a red umbrella",
+        "",
+        "a parked bicycle",
+        "a bus",
+        "a fountain",
+        "A WOMAN"
+      ],
+      "split_sentences": [
+        "In the foreground, a woman with a red umbrella walks next to a parked bicycle;",
+        "behind her, a bus (route 12) waits at the stop.",
+        "Children play around a fountain under the trees."
+      ],
+      "extracted_phrases": [
+        "In the foreground",
+        "a woman",
+        "a red umbrella walks",
+        "a parked bicycle",
+        "a bus",
+        "route 12",
+        "waits at the stop Children play",
+        "a fountain",
+        "the trees"
+      ],
+      "full": [
+        {
+          "text": "In the foreground, a woman with a red umbrella walks next to a parked bicycle; behind her, a bus (route 12) waits at the stop. Children play around a fountain under the trees.",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "In the foreground, a woman with a red umbrella walks next to a parked bicycle;",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "behind her, a bus (route 12) waits at the stop.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "Children play around a fountain under the trees.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "a woman",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "a red umbrella",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 1
+        },
+        {
+          "text": "a parked bicycle",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 3
+        },
+        {
+          "text": "a bus",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 4
+        },
+        {
+          "text": "a fountain",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 5
+        },
+        {
+          "text": "In the foreground",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "a red umbrella walks",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "route 12",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "waits at the stop Children play",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        },
+        {
+          "text": "the trees",
+          "type": 3,
+          "parent": 1,
+          "weight": 0.5,
+          "source_part": -1
+        }
+      ],
+      "paper": [
+        {
+          "text": "In the foreground, a woman with a red umbrella walks next to a parked bicycle; behind her, a bus (route 12) waits at the stop. Children play around a fountain under the trees.",
+          "type": 0,
+          "parent": -1,
+          "weight": 0.0,
+          "source_part": -1
+        },
+        {
+          "text": "In the foreground, a woman with a red umbrella walks next to a parked bicycle;",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "behind her, a bus (route 12) waits at the stop.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "Children play around a fountain under the trees.",
+          "type": 1,
+          "parent": 0,
+          "weight": 1.0,
+          "source_part": -1
+        },
+        {
+          "text": "a woman",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 0
+        },
+        {
+          "text": "a red umbrella",
+          "type": 2,
+          "parent": 0,
+          "weight": 0.75,
+          "source_part": 1
+        }
+      ],
+      "collated": {
+        "query_texts": [
+          "In the foreground, a woman with a red umbrella walks next to a parked bicycle; behind her, a bus (route 12) waits at the stop. Children play around a fountain under the trees.",
+          "In the foreground, a woman with a red umbrella walks next to a parked bicycle;",
+          "behind her, a bus (route 12) waits at the stop.",
+          "Children play around a fountain under the trees.",
+          "a woman",
+          "a red umbrella"
+        ],
+        "query_owner": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_parent": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "query_weight": [
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          0.75,
+          0.75
+        ],
+        "query_source_part": [
+          -1,
+          -1,
+          -1,
+          -1,
+          0,
+          1
+        ],
+        "query_input_ids_shape": [
+          6,
+          43
+        ],
+        "query_input_ids": [
+          [
+            49406,
+            530,
+            518,
+            35186,
+            267,
+            320,
+            2308,
+            593,
+            320,
+            736,
+            17143,
+            8192,
+            1131,
+            531,
+            320,
+            16487,
+            11652,
+            282,
+            2403,
+            899,
+            267,
+            320,
+            2840,
+            263,
+            5261,
+            272,
+            273,
+            264,
+            21361,
+            536,
+            518,
+            1691,
+            269,
+            2153,
+            1453,
+            1630,
+            320,
+            13405,
+            1798,
+            518,
+            4682,
+            269,
+            49407
+          ],
+          [
+            49406,
+            530,
+            518,
+            35186,
+            267,
+            320,
+            2308,
+            593,
+            320,
+            736,
+            17143,
+            8192,
+            1131,
+            531,
+            320,
+            16487,
+            11652,
+            282,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            2403,
+            899,
+            267,
+            320,
+            2840,
+            263,
+            5261,
+            272,
+            273,
+            264,
+            21361,
+            536,
+            518,
+            1691,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            2153,
+            1453,
+            1630,
+            320,
+            13405,
+            1798,
+            518,
+            4682,
+            269,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            2308,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ],
+          [
+            49406,
+            320,
+            736,
+            17143,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407,
+            49407
+          ]
+        ],
+        "query_attention_mask": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    }
+  ]
+}

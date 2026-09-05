@@ -1,0 +1,34 @@
+# Paper Table 5: hierarchy entailment on a HierarCaps-style file, plus the two
+# retrieval runs whose four R@10 values the ablation averages into "Avg R@10".
+# The reported run used COCO val2017 here, not the Table 2 Karpathy split
+# (see docs/evaluation.md).
+name: hierarchy_entailment
+defaults:
+  batch_size: 128
+  num_workers: 8
+  pair_batch_size: 8192
+  precision: fp32
+tasks:
+  - id: hierarchy_entailment
+    name: hierarchy_entailment
+    data:
+      dataset: HierarCaps
+      annotations_path: ${HYPER3_HIERARCAPS_ANNOTATIONS_PATH}
+      image_root: ${HYPER3_HIERARCAPS_IMAGE_ROOT}
+      # "entailment_score" is the paper's clamped p(a<=b); "signed_margin" is
+      # the setting that produced the published Table 5 numbers.
+      score: entailment_score
+      max_negatives_per_image: 100
+
+  - id: coco_val2017_retrieval
+    name: coco_val2017_retrieval
+    data:
+      dataset: COCO val2017
+      coco2017_root: ${HYPER3_COCO2017_ROOT}
+
+  - id: flickr30k_retrieval
+    name: flickr30k_retrieval
+    data:
+      dataset: Flickr30K
+      flickr30k_root: ${HYPER3_FLICKR30K_ROOT}
+      flickr30k_split: test

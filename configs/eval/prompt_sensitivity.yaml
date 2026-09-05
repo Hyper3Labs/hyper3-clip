@@ -1,0 +1,64 @@
+# Paper Table 6: prompt sensitivity.  The three prompt-sensitive datasets are
+# each run twice, once with their official prompt set and once with the Photo
+# prompt "a photo of a {}.".  scripts/summarize_results.py reports the
+# three-dataset average and, when the Table 3 results share the output
+# directory, the 16-dataset average with only these three columns swapped.
+name: prompt_sensitivity
+defaults:
+  batch_size: 128
+  num_workers: 8
+  precision: fp32
+tasks:
+  - id: food101_zero_shot_official
+    name: imagefolder_zero_shot
+    data:
+      dataset: Food-101 (official)
+      root: ${HYPER3_FOOD101_ROOT}
+      prompt_set: food101
+      prompt_regime: official
+      class_names_key: food101
+
+  - id: food101_zero_shot_photo
+    name: imagefolder_zero_shot
+    data:
+      dataset: Food-101 (photo)
+      root: ${HYPER3_FOOD101_ROOT}
+      prompt_set: food101
+      prompt_regime: photo
+      class_names_key: food101
+
+  - id: cub_zero_shot_official
+    name: imagefolder_zero_shot
+    data:
+      dataset: CUB (official)
+      root: ${HYPER3_CUB_ROOT}
+      prompt_set: cub2011
+      prompt_regime: official
+      class_names_key: cub2011
+
+  - id: cub_zero_shot_photo
+    name: imagefolder_zero_shot
+    data:
+      dataset: CUB (photo)
+      root: ${HYPER3_CUB_ROOT}
+      prompt_set: cub2011
+      prompt_regime: photo
+      class_names_key: cub2011
+
+  - id: flowers_zero_shot_official
+    name: imagefolder_zero_shot
+    data:
+      dataset: Flowers (official)
+      root: ${HYPER3_FLOWERS_ROOT}
+      prompt_set: flowers102
+      prompt_regime: official
+      class_names_key: flowers102
+
+  - id: flowers_zero_shot_photo
+    name: imagefolder_zero_shot
+    data:
+      dataset: Flowers (photo)
+      root: ${HYPER3_FLOWERS_ROOT}
+      prompt_set: flowers102
+      prompt_regime: photo
+      class_names_key: flowers102

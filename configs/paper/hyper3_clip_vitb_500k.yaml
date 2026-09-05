@@ -1,0 +1,83 @@
+# Hyper3-CLIP, the paper recipe: ViT-B/16 + CLIP-B/32 text, both from scratch,
+# 500k steps at global batch 768 on processed GRIT.
+#
+# Before running, set `data.tarfiles` to your processed-GRIT shards and
+# `output_dir` to a writable directory:
+#
+#   torchrun --nproc_per_node=8 scripts/train.py \
+#       --config configs/paper/hyper3_clip_vitb_500k.yaml \
+#       --override data.tarfiles='["/data/grit/shard-{000000..000999}.tar"]'
+
+project:
+  name: hyper3-clip
+  experiment: hyper3_clip_vitb_500k
+seed: 31
+output_dir: runs/hyper3_clip_vitb_500k
+model:
+  vision_backbone: vit_base_patch16_224
+  vision_global_pool: token
+  vision_sincos2d_pos: true
+  vision_norm_layer: layer_norm
+  text_model_name: openai/clip-vit-base-patch32
+  embed_dim: 512
+  curv_init: 1.0
+  learn_curv: true
+  query_pooling: true
+  query_num_heads: 8
+  query_mlp_ratio: 4.0
+  query_pooling_mode: conditioned
+  query_parent_mode: 'true'
+objective:
+  entail_weight: 0.2
+  inter_aperture_scale: 0.7
+  intra_aperture_scale: 1.2
+  calibration_alpha: 10.0
+  stop_grad_calibration: true
+  query_image_text_weight: 1.0
+  visual_hierarchy_weight: 1.0
+  text_hierarchy_weight: 1.0
+  reverse_visual_order: false
+training:
+  total_steps: 500000
+  scheduler_total_steps: null
+  global_batch_size: 768
+  grad_accum_steps: 1
+  lr: 0.0005
+  weight_decay: 0.2
+  betas:
+  - 0.9
+  - 0.98
+  warmup_steps: 4000
+  amp: true
+  max_grad_norm: 1.0
+  log_interval: 20
+  ckpt_interval: 10000
+  resume: true
+  resume_from: null
+  find_unused_parameters: true
+optimizer:
+  no_decay_params:
+  - global_logit_scale
+  - local_logit_scale
+  - global_local_logit_scale
+  - visual_alpha
+  - textual_alpha
+  - log_curv
+  eps: 1.0e-08
+data:
+  type: processed_grit
+  tarfiles:
+  - /path/to/grit-processed/shard-{000000..000999}.tar
+  image_size: 224
+  max_text_length: 77
+  shuffle_buffer: 4000
+  num_workers: 8
+  pin_memory: true
+  max_parts: 5
+  train_transform: tight_crop_color_jitter_gray
+  image_normalization: imagenet
+  queries_enabled: true
+  max_sentences: 5
+  max_phrases: 30
+  max_queries_per_image: 6
+  use_text_boxes: true
