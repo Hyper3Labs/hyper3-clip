@@ -63,7 +63,7 @@ Retrieval is ranked by the **negative Lorentz distance**. Ranking by the
 Lorentz inner product gives the identical order and is a plain dot product with
 the time coordinate negated, which is the cheaper score for a vector database.
 
-Entailment is directional — ask how far a phrase sits inside a caption's cone.
+Entailment is directional: ask how far a phrase sits inside a caption's cone.
 The score is `1` on the cone axis and falls to `0` once the specific node is a
 right angle or more outside:
 
