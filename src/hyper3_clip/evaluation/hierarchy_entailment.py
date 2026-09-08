@@ -37,6 +37,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 
 import torch
 from torch import Tensor
@@ -59,6 +60,7 @@ __all__ = [
 SCORE_FUNCTIONS: tuple[str, ...] = ("entailment_score", "signed_margin")
 
 _IMAGE_KEYS = ("image_path", "path", "file_name", "filename")
+_URL_KEYS = ("image_url", "url")
 _IMAGE_ID_KEYS = ("image_id", "id", "image_path", "path", "file_name", "filename", "image_url", "url")
 _POSITIVE_KEYS = ("positive_captions", "hierarchical_captions", "caption_hierarchy", "captions")
 _NEGATIVE_KEYS = ("negative_captions", "negatives", "negative_pool")
@@ -134,7 +136,14 @@ def _sample_from_row(row: dict[str, Any], image_root: str | Path | None) -> Hier
         raise ValueError(f"Hierarchy-entailment sample has no positive captions: {row}")
     raw_path = _first_present(row, _IMAGE_KEYS)
     if raw_path is None:
-        raise ValueError(f"Hierarchy-entailment sample has no image path: {row}")
+        # The public HierarCaps release names images by URL only
+        # (``image_url``); the file name resolves against ``image_root``.
+        raw_url = _first_present(row, _URL_KEYS)
+        if raw_url is None:
+            raise ValueError(f"Hierarchy-entailment sample has no image path: {row}")
+        raw_path = urlsplit(str(raw_url)).path.rsplit("/", 1)[-1]
+        if not raw_path:
+            raise ValueError(f"Hierarchy-entailment sample has an image URL without a file name: {row}")
     image_path = Path(str(raw_path))
     if not image_path.is_absolute():
         if image_root is None:

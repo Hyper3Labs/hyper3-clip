@@ -290,7 +290,9 @@ JSON list or split on `=>` (then `||`) — **order matters, the last entry is th
 finest node**; or one row per `(image, caption, label)` triple with `caption`
 and `label` columns, which is regrouped by image key into positives (`label ∈
 {1, true, yes, positive, pos}`) and negatives, preserving row order. Image
-paths resolve against `image_root`.
+paths resolve against `image_root`; a row that carries only an `image_url`
+(the public HierarCaps release: `id,captions,image_url`) uses the URL's file
+name, so `image_root` should point at the COCO `val2014` directory.
 
 **Avg R@10.** The suite also runs two retrieval tasks; the ablation's
 "Avg R@10" is the unweighted mean of their four R@10 values. The reported

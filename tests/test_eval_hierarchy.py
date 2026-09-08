@@ -91,3 +91,20 @@ def test_shipped_assets_describe_the_1000_imagenet_classes() -> None:
     assert tree.path_length(tree.synsets[0], tree.synsets[999]) > 0
     metrics = tree.metrics([0], [0])
     assert metrics["jaccard"] == pytest.approx(1.0)
+
+
+def test_hierarcaps_rows_resolve_image_urls_against_the_root(tmp_path) -> None:
+    """The public HierarCaps CSV carries ``image_url`` only; the file name joins ``image_root``."""
+    from hyper3_clip.evaluation.hierarchy_entailment import load_hierarchy_entailment_samples
+
+    csv_path = tmp_path / "hierarcaps_test.csv"
+    csv_path.write_text(
+        "id,captions,image_url\n"
+        '0,"table => table with plates => a table with three plates",'
+        "http://images.cocodataset.org/val2014/COCO_val2014_000000301718.jpg\n",
+        encoding="utf-8",
+    )
+    (sample,) = load_hierarchy_entailment_samples(csv_path, image_root=tmp_path / "val2014")
+    assert sample.image_path == tmp_path / "val2014" / "COCO_val2014_000000301718.jpg"
+    assert sample.positive_captions == ("table", "table with plates", "a table with three plates")
+    assert sample.image_id == "0"
