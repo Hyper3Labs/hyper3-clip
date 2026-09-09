@@ -266,7 +266,9 @@ class Hyper3CLIP(nn.Module):
         """Return pooled text-tower features ``[N, d_t]``."""
         return self.text_encoder(input_ids=input_ids, attention_mask=attention_mask)
 
-    def forward(self, batch: Mapping[str, Tensor], *, step: int | None = None) -> dict[str, Any]:
+    def forward(
+        self, batch: Mapping[str, Tensor], *, step: int | None = None, return_loss: bool = False
+    ) -> dict[str, Any]:
         """Run the fused training forward and return the objective's node dict.
 
         ``batch`` is the collator output (see
@@ -274,6 +276,13 @@ class Hyper3CLIP(nn.Module):
         is exactly what :func:`~hyper3_clip.models.objective.compute_objective`
         consumes, including the DDP-gathered negative pools and the rank-offset
         targets; on a single process the pools alias the local tensors.
+
+        With ``return_loss=True`` the objective is evaluated here as well (in
+        float32, autocast off) and the loss dict is returned instead.  This is
+        the path the trainer uses: under ``DistributedDataParallel`` the loss
+        must be computed inside the wrapped forward, because the temperature
+        parameters only enter the graph through the contrastive term and DDP
+        would otherwise mark them as unused before they receive a gradient.
         """
         with torch.no_grad():
             self._clamp_parameters()
@@ -345,19 +354,17 @@ class Hyper3CLIP(nn.Module):
                 use_queries=use_queries,
             )
         )
+        if return_loss:
+            with torch.autocast(device_type=device.type, enabled=False):
+                return self.loss_from_nodes(nodes)
         return nodes
 
     def compute_loss(self, batch: Mapping[str, Tensor], *, step: int | None = None) -> dict[str, Tensor]:
-        """Run :meth:`forward` and evaluate the objective on its nodes."""
-        return self.loss_from_nodes(self.forward(batch, step=step))
+        """Run :meth:`forward` with ``return_loss=True``."""
+        return self.forward(batch, step=step, return_loss=True)
 
     def loss_from_nodes(self, nodes: Mapping[str, Any]) -> dict[str, Tensor]:
-        """Evaluate the objective plus the scalars worth logging each step.
-
-        Kept separate from :meth:`forward` so a DDP-wrapped module can produce
-        the nodes and the (parameter-free) objective can be evaluated outside
-        the wrapper.
-        """
+        """Evaluate the objective plus the scalars worth logging each step."""
         losses = compute_objective(nodes, self.config.objective)
         kappa = nodes["kappa"]
         return {

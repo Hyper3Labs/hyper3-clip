@@ -182,9 +182,10 @@ class Trainer:
 
         non_blocking = training.non_blocking_transfer
         batch = {key: value.to(self.device, non_blocking=non_blocking) for key, value in batch.items()}
+        # The objective is evaluated inside the (DDP-wrapped) forward; see
+        # Hyper3CLIP.forward for why it cannot run outside the wrapper.
         with torch.autocast(device_type=self.device.type, dtype=torch.float16, enabled=bool(training.amp)):
-            nodes = self.model(batch, step=self.step)
-        losses = self.raw_model.loss_from_nodes(nodes)
+            losses = self.model(batch, step=self.step, return_loss=True)
         (self.scaler.scale(losses["loss"] / accum)).backward()
 
         if (micro_step + 1) % accum != 0:
